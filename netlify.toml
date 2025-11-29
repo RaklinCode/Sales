@@ -6,3 +6,9 @@
   NODE_VERSION = "18"
   # Whitelist public Supabase keys - these are safe to expose in client-side code
   SECRETS_SCAN_OMIT_KEYS = "VITE_SUPABASE_KEY,VITE_SUPABASE_URL,VITE_ADMIN_PASSWORD"
+
+# Redirect all requests to index.html for client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
