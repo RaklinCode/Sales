@@ -16,8 +16,16 @@ envContent.split('\n').forEach(line => {
     }
 });
 
-const supabaseUrl = 'https://jskrpwrgceumhfudisff.supabase.co';
-const supabaseKey = 'sb_publishable_vHq-F8eludMgAGf3zky8Tg_1J7CvXgO';
+
+// Use environment variables instead of hardcoded credentials
+const supabaseUrl = envConfig.VITE_SUPABASE_URL;
+const supabaseKey = envConfig.VITE_SUPABASE_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+    console.error('Missing Supabase credentials in .env file');
+    process.exit(1);
+}
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const adminPassword = envConfig.VITE_ADMIN_PASSWORD || 'admin1234';
