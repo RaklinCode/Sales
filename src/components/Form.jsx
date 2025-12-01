@@ -25,6 +25,7 @@ function Form({ onDealAdded }) {
       const newDeal = {
         user_id: user.id,
         value: formData.get('value'),
+        client_name: formData.get('client_name'),
       };
       console.log('newDeal', newDeal);
       const { error } = await supabase.from('sales_deals').insert(newDeal);
@@ -100,6 +101,20 @@ function Form({ onDealAdded }) {
             </select>
           </label>)
         }
+
+        <label htmlFor="client-name">
+          Client Name:
+          <input
+            id="client-name"
+            type="text"
+            name="client_name"
+            aria-required="true"
+            aria-invalid={error ? 'true' : 'false'}
+            disabled={isPending}
+            required
+            style={{ backgroundColor: 'white', border: '1px solid #000000ff', borderRadius: '4px' }}
+          />
+        </label>
 
         <label htmlFor="deal-value">
           Amount: $
